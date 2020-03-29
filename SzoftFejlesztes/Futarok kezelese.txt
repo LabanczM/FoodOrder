@@ -1,0 +1,20 @@
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Header}" Background="LightYellow" Content="Program neve"/>
+        <Label Content="Futárok" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontFamily="Times New Roman" Grid.Column="0" Grid.Row="1"/>
+        <DataGrid Grid.Row="2" Grid.RowSpan="4"/>
+        <Button Content="Fizetés" Grid.Column="1" Grid.Row="2" Style="{StaticResource MenuP}"/>
+        <Button Content="Törlés" Grid.Column="1" Grid.Row="3" Style="{StaticResource MenuP}"/>
+        <Button Content="Vissza" Grid.Column="1" Grid.Row="4" Style="{StaticResource MenuP}"/>
+    </Grid>

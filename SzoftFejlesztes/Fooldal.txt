@@ -1,0 +1,20 @@
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Style="{StaticResource Header}" Background="LightYellow" Content="Program neve" Grid.ColumnSpan="2"/>
+        <Button Style="{StaticResource MenuP}" Content="Menü szerkesztése" Grid.Row="2" Grid.Column="0"/>
+        <Button Style="{StaticResource MenuP}" Content="Rendelések kezelése" Grid.Row="2" Grid.Column="1"/>
+        <Button Style="{StaticResource MenuP}" Content="Futárok kezelése" Grid.Row="3" Grid.Column="1"/>
+        <Button Style="{StaticResource MenuP}" Content="Statisztika készítése" Grid.Row="3" Grid.Column="0"/>
+        <Button Style="{StaticResource MenuP}" Content="Kijelentkezés" Grid.Row="5" Grid.ColumnSpan="2"/>
+    </Grid>

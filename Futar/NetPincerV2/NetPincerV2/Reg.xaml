@@ -1,0 +1,63 @@
+﻿<Window x:Class="NetPincerV2.Reg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NetPincerV2"
+        mc:Ignorable="d"
+        Title="Reg" Height="600" Width="950">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Background="Black" ></StackPanel>
+        <StackPanel Grid.Column="3" Background="Black" ></StackPanel>
+        <StackPanel Background="Gray" Grid.Column="1" >
+            <Label Margin="0,15,0,0" HorizontalAlignment="Center" Content="Adatok" FontSize="25"  Grid.Column="1" ></Label>
+        </StackPanel>
+        <StackPanel Background="Gray" Grid.Row="1" Grid.Column="3" ></StackPanel>
+        <StackPanel Background="Gray" Grid.Row="1" ></StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <Grid Height="350" Margin="0,0,-0.4,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" >
+                    <Label Margin="40,10,24.8,0" FontSize="18" Height="40" Content="Név:"/>
+                    <Label Margin="40,10,26.2,0" FontSize="18" Height="40" Content="Születési Dátum"/>
+                    <Label Margin="40,10,24.8,0" FontSize="18" Height="40" Content="Város:"/>
+                    <Label Margin="40,10,24.8,0" FontSize="18" Height="40" Content="Jogosítvány típusa:"/>
+                    <Label Margin="40,10,24.8,0" FontSize="18" Height="40" Content="Email:"/>
+                    <Label Margin="40,10,24.8,0" FontSize="18" Height="40" Content="Telefonszám:"/>
+                    <Label Margin="40,10,24.8,0" FontSize="18" Height="40" Content="Jelszó:"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" >
+                    <TextBox x:Name="nev" Margin="45,10,28.2,0" FontSize="18" Height="40" />
+                    <TextBox Name="datum" Margin="45,10,28.6,0" FontSize="18" Height="40" />
+                    <TextBox Name="varos" Margin="45,10,28.2,0" FontSize="18" Height="40" />
+                    <TextBox x:Name="jogsi" Margin="45,10,28.2,0" FontSize="18" Height="40" />
+                    <TextBox x:Name="email" Margin="45,10,28.2,0" FontSize="18" Height="40" />
+                    <TextBox Name="tel" Margin="45,10,28.2,0" FontSize="18" Height="40" />
+                    <TextBox x:Name="jelso" Margin="45,10,28.2,0" FontSize="18" Height="40" />
+                </StackPanel>
+
+            </Grid>
+        </StackPanel>
+        <Button  FontSize="18" Width="250" Height="40" Content="Mentés" Grid.Column="1" Margin="500.8,387.8,35.6,47.4" Grid.Row="1" Click="Button_Click_1"/>
+        <Button  FontSize="18" Width="250" Height="40" Content="Vissza" Grid.Column="1" Margin="43.8,387.8,492.6,47.4" Grid.Row="1" RenderTransformOrigin="0.501,0.5" Click="Button_Click"/>
+
+
+    </Grid>
+</Window>

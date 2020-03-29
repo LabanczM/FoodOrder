@@ -31,3 +31,13 @@ D:\Egyetem\4.félév\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.AssemblyIn
 D:\Egyetem\4.félév\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.AssemblyInfo.cs
 D:\Egyetem\4.félév\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.dll
 D:\Egyetem\4.félév\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.pdb
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.csprojAssemblyReference.cache
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.AssemblyInfoInputs.cache
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.AssemblyInfo.cs
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.dll
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.pdb
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\bin\Debug\netcoreapp2.1\ServerV3.deps.json
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\bin\Debug\netcoreapp2.1\ServerV3.runtimeconfig.json
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\bin\Debug\netcoreapp2.1\ServerV3.runtimeconfig.dev.json
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\bin\Debug\netcoreapp2.1\ServerV3.dll
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\bin\Debug\netcoreapp2.1\ServerV3.pdb

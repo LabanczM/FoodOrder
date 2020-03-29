@@ -47,7 +47,6 @@ namespace ServerV3
             {
                 connection.Close();
             }
-
             public string Login(string tablename, string name, string password)
             {
                 MySqlDataReader dataReader = null;
@@ -213,7 +212,7 @@ namespace ServerV3
                     try
                     {
                         string message = "";
-                        string query = "Select Rendeles.Id, Rendeles.Datum, Vasarlo.Nev, Vasarlo.Cim, Rendeles.Ar from Rendeles join Vasarlo on Vasarlo.Id = Rendeles.Vasarlo_Id where Futar_Id like " + id;
+                        string query = "Select Rendeles.Id, Rendeles.Datum, Vasarlo.Nev, Vasarlo.Cim, Rendeles.Ar from Rendeles join Vasarlo on Vasarlo.Id = Rendeles.Vasarlo_Id where Rendeles.Allapot = 0 and Futar_Id like " + id;
                         MySqlCommand cmd = new MySqlCommand(query, connection);
                         dataReader = cmd.ExecuteReader();
 
@@ -241,7 +240,7 @@ namespace ServerV3
                 {
                     string message = "";
                     string query = "Select Rendeles.Id, Rendeles.Datum, Vasarlo.Nev, Vasarlo.Cim, Rendeles.Ar, " +
-                        "Rendeles.Etelek from Rendeles join Vasarlo on Rendeles.Vasarlo_Id = Vasarlo.Id";
+                        "Rendeles.Etelek from Rendeles join Vasarlo on Rendeles.Vasarlo_Id = Vasarlo.Id Where Rendeles.Allapot = 0";
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     try
@@ -279,18 +278,79 @@ namespace ServerV3
                     return "Error";
                 }
             }
+            public string Szallitas_Finished(string id)
+            {
+                try 
+                {
+                    string query = "Update Futar set Szall_szam = Szall_szam + 1 Where Id = " + id;
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.ExecuteNonQuery();
+
+                    return "OK";
+                }
+                catch (Exception)
+                {
+                    return "Error";
+                }
+            }
+
+            public string Orderstate_update(string order_id)
+            {
+                try
+                {
+                    string query = "Update Rendeles set Allapot = 1 Where Id = " + order_id;
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.ExecuteNonQuery();
+
+                    return "OK";
+                }
+                catch (Exception)
+                {
+                    return "Error";
+                }
+            }
+            public void Fizetes()
+            {
+                string query = "Update Futar set Penz = Szall_szam * 300";
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static Hashtable clientsList = new Hashtable();
 
+        //Timer a fizeteshez==========================
+        private System.Threading.Timer timer;
+        private void SetUpTimer(TimeSpan alertTime)
+        {
+            DateTime current = DateTime.Now;
+            TimeSpan timeToGo = alertTime - current.TimeOfDay;
+            if (timeToGo < TimeSpan.Zero)
+            {
+                return;//time already passed
+            }
+            this.timer = new System.Threading.Timer(x =>
+            {
+                this.SomeMethodRunsAt2359();
+            }, null, timeToGo, System.Threading.Timeout.InfiniteTimeSpan);
+        }
+        private void SomeMethodRunsAt2359()
+        {
+            DB.Instance.Fizetes();
+        }
+        //===========================================
         static void Main(string[] args)
         {
+            Program p = new Program();
+            p.SetUpTimer(new TimeSpan(23, 59, 00));
             Server_Run();
         }
 
         private static void Server_Run()
         {
-            IPAddress ipAd = IPAddress.Parse("192.168.1.65");
+            //Attila
+            IPAddress ipAd = IPAddress.Parse("192.168.1.107");
+            //IPAddress ipAd = IPAddress.Parse("192.168.1.65");
             TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
@@ -438,6 +498,21 @@ namespace ServerV3
                 if (dataFromClient.Contains("cancelorderC"))
                 {
                     string messageback = DB.Instance.Order_cancel_from_futar(dataFromClient.Split(';')[1], dataFromClient.Split(';')[2]);
+
+                    Byte[] broadcastBytes = null;
+                    broadcastBytes = Encoding.ASCII.GetBytes(messageback);
+                    networkStream.Write(broadcastBytes, 0, broadcastBytes.Length);
+                    networkStream.Flush();
+                }
+                //Szallitas vegrehajtva
+                if (dataFromClient.Contains("szall_fin"))
+                {
+                    string stateoforder = DB.Instance.Szallitas_Finished(dataFromClient.Split(';')[1]);
+                    string messageback = "";
+                    if (stateoforder == "OK")
+                    {
+                         messageback = DB.Instance.Orderstate_update(dataFromClient.Split(';')[2]);
+                    }
 
                     Byte[] broadcastBytes = null;
                     broadcastBytes = Encoding.ASCII.GetBytes(messageback);

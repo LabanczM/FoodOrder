@@ -11,7 +11,10 @@ namespace NetPincerV2
 {
     public sealed class Server_connection
     {
-        private static string ip = "192.168.1.65";
+        //Attila
+        private static string ip = "192.168.1.107";
+        //Gábor
+        //private static string ip = "192.168.1.65";
         private static int port = 8081;
 
         private static Server_connection instance = null;

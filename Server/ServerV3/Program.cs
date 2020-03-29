@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ServerV3
 {
-    class Program // saját
+    class Program
     {
         public sealed class DB
         {

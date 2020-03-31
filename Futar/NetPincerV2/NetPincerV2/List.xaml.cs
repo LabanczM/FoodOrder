@@ -77,8 +77,8 @@ namespace NetPincerV2
                 }
                 else
                 {
-                    if (messageback == "failed") rendeles.Items.Add("Nem lehet leadni");
-                    else rendeles.Items.Add("Adatbázis hiba");
+                    if (messageback == "failed") MessageBox.Show("Nem lehet leadni");
+                    else MessageBox.Show("Adatbázis hiba");
                 }
             }
         }
@@ -109,6 +109,23 @@ namespace NetPincerV2
         private void Rendeles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             list_selected_item_index = rendeles.SelectedIndex;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            // rákérdezés
+
+
+            if (list_selected_item_index != -1)
+            {
+                string message = Server_connection.GetInstance().SendMessageToServer("szall_fin;" + UserData.GetInstance().Database_ID + ";" + rendelesek[list_selected_item_index].Id,true);
+                if (message == "OK") MessageBox.Show("Elfogadva");
+                else if (message == "failed") MessageBox.Show("Nincs másik futár.");
+                else MessageBox.Show("Adatbázis hiba");
+                rendelesek.RemoveAt(list_selected_item_index);
+                rendeles.ItemsSource = null;
+                rendeles.ItemsSource = rendelesek;
+            }
         }
     }
 }

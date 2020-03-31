@@ -267,9 +267,22 @@ namespace ServerV3
             {
                 try
                 {
-                    string query = "Update Rendeles set Futar_Id = (select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id+ ") AND Futar.Id != 1   order by Ertekeles limit 1 ) WHERE Id = " + order_id;
+                    string query = "select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id + ") AND Futar.Id != " + id + " AND Elerhetoseg = 1  order by Ertekeles limit 1";
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    dataReader.Read();
+                    if (!dataReader.HasRows) { return "failed"; }
+
+                    string id2 = dataReader.GetInt32("Id").ToString();
+
+                    dataReader.Close();
+
+                    string query_2 = "Update Rendeles set Futar_Id = " +id2+ " WHERE Id = " + order_id;
+                    cmd = new MySqlCommand(query_2, connection);
                     cmd.ExecuteNonQuery();
+
+                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",C");
 
                     return "OK";
                 }
@@ -278,6 +291,7 @@ namespace ServerV3
                     return "Error";
                 }
             }
+
             public string Szallitas_Finished(string id)
             {
                 try 
@@ -349,8 +363,8 @@ namespace ServerV3
         private static void Server_Run()
         {
             //Attila
-            IPAddress ipAd = IPAddress.Parse("192.168.1.107");
-            //IPAddress ipAd = IPAddress.Parse("192.168.1.65");
+            //IPAddress ipAd = IPAddress.Parse("192.168.1.107");
+            IPAddress ipAd = IPAddress.Parse("192.168.1.81");
             TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
@@ -511,8 +525,9 @@ namespace ServerV3
                     string messageback = "";
                     if (stateoforder == "OK")
                     {
-                         messageback = DB.Instance.Orderstate_update(dataFromClient.Split(';')[2]);
+                        messageback = DB.Instance.Orderstate_update(dataFromClient.Split(';')[2]);
                     }
+                    else messageback = stateoforder;
 
                     Byte[] broadcastBytes = null;
                     broadcastBytes = Encoding.ASCII.GetBytes(messageback);

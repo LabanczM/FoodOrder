@@ -11,7 +11,7 @@ namespace NetPincerV2
 {
     public sealed class Server_connection
     {
-        private static string ip = "192.168.1.65";
+        private static string ip = "192.168.1.81";
         private static int port = 8081;
 
         private static Server_connection instance = null;
@@ -125,18 +125,12 @@ namespace NetPincerV2
                         response += Convert.ToChar(bb[i]);
                     }
 
-                    if (response == "alert")
-                    {
-                        MainWindow.MessageFromServer("Alert from server");
+                    MainWindow.MessageFromServer(response);
 
-                        Console.Beep();
-                        Thread.Sleep(500);
-                        Console.Beep();
-                    }
-                    else
-                    {
-                        throw new Exception();
-                    }
+                    Console.Beep();
+                    Thread.Sleep(500);
+                    Console.Beep();
+
                 }
 
                 client.Close();

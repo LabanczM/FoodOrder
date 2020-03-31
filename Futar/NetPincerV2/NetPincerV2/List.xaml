@@ -27,8 +27,9 @@
         <StackPanel Background="Gray" Grid.Row="1" ></StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" >
-            <DataGrid x:Name="rendeles" Width="650" Height="279" Margin="89,30,89,0" SelectionChanged="Rendeles_SelectionChanged"  ></DataGrid>
+            <DataGrid x:Name="rendeles" Width="650" Height="223" Margin="89,30,89,0" SelectionChanged="Rendeles_SelectionChanged"  ></DataGrid>
             <Button Margin="289,40,289,0" FontSize="18" Width="250" Height="40" Content="Leadás" Click="Button_Click_1"/>
+            <Button Margin="289,20,289,0" FontSize="18" Width="250" Height="40" Content="Étel kiszállítva" Click="Button_Click_2"/>
         </StackPanel>
         <Button  FontSize="18" Width="250" Height="40" Content="Vissza" Grid.Column="1" Margin="0,350,0,0" Grid.Row="1" Click="Button_Click"/>
 

@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Futar",
+    "\\Futar\\NetPincerV2",
     "\\Server"
   ],
-  "SelectedNode": "\\Server\\ServerV3.sln",
+  "SelectedNode": "\\Futar\\NetPincerV2\\NetPincerV2.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -52,7 +52,10 @@ namespace ServerV3
                 MySqlDataReader dataReader = null;
                 try
                 {
-                    string query = "Select * from " + tablename + " where Nev like '" + name + "' and Jelszo like '" + password + "'";
+                    string query = "";
+                    if (tablename != "Vasarlo")  query = "Select * from " + tablename + " where Nev like '" + name + "' and Jelszo like '" + password + "'";
+                    else  query = "Select * from " + tablename + " where Tel like '" + name + "' and Jelszo like '" + password + "'";
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     dataReader = cmd.ExecuteReader();
 
@@ -364,7 +367,7 @@ namespace ServerV3
         {
             //Attila
             //IPAddress ipAd = IPAddress.Parse("192.168.1.107");
-            IPAddress ipAd = IPAddress.Parse("192.168.1.81");
+            IPAddress ipAd = IPAddress.Parse("192.168.1.7");
             TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
@@ -375,7 +378,7 @@ namespace ServerV3
             {
                 clientSocket = serverSocket.AcceptTcpClient();
 
-                int buffersize = clientSocket.ReceiveBufferSize;
+                int buffersize = 500;
                 byte[] bytesFrom = new byte[buffersize];
                 string dataFromClient = null;
 

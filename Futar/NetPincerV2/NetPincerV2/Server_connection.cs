@@ -11,7 +11,7 @@ namespace NetPincerV2
 {
     public sealed class Server_connection
     {
-        private static string ip = "192.168.1.81";
+        private static string ip = "192.168.1.7";
         private static int port = 8081;
 
         private static Server_connection instance = null;
@@ -48,7 +48,6 @@ namespace NetPincerV2
                 client = new TcpClient();
                 client.Connect(ip, port); // where to connect
 
-                // send ip and id to server for identification
                 Stream stm = client.GetStream();
                 ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] ba = asen.GetBytes(message);

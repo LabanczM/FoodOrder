@@ -49,7 +49,6 @@ namespace SzoftFejlesztes
             this.driver_l = v4;
             this.email = v5;
             this.tel = v6;
-
         }
     }
     public partial class Futarok : Window

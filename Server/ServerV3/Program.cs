@@ -342,7 +342,7 @@ namespace ServerV3
         static void Main(string[] args)
         {
             Program p = new Program();
-            p.SetUpTimer(new TimeSpan(23, 59, 00));
+            p.SetUpTimer(new TimeSpan(14, 09, 00));
             Server_Run();
         }
 
@@ -351,7 +351,7 @@ namespace ServerV3
             //Attila
             IPAddress ipAd = IPAddress.Parse("192.168.1.107");
             //IPAddress ipAd = IPAddress.Parse("192.168.1.65");
-            TcpListener serverSocket = new TcpListener(ipAd, 8081); 
+            TcpListener serverSocket = new TcpListener(ipAd, 8081);
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
 

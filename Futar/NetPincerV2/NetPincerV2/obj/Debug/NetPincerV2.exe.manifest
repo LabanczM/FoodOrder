@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NetPincerV2.exe" size="33776">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NetPincerV2.exe" size="34288">
       <assemblyIdentity name="NetPincerV2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Vvs1a9SfPYyf3KFc5lbOA5e0fwt/NjYSdYlZTMry5hY=</dsig:DigestValue>
+        <dsig:DigestValue>PDaDLzdZ6uhIr/WiwgrKv3dpGDHJV15gXG5whceVFrI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

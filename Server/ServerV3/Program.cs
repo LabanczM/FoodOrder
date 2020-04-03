@@ -52,7 +52,10 @@ namespace ServerV3
                 MySqlDataReader dataReader = null;
                 try
                 {
-                    string query = "Select * from " + tablename + " where Nev like '" + name + "' and Jelszo like '" + password + "'";
+                    string query = "";
+                    if (tablename != "Vasarlo")  query = "Select * from " + tablename + " where Nev like '" + name + "' and Jelszo like '" + password + "'";
+                    else  query = "Select * from " + tablename + " where Tel like '" + name + "' and Jelszo like '" + password + "'";
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     dataReader = cmd.ExecuteReader();
 
@@ -267,9 +270,22 @@ namespace ServerV3
             {
                 try
                 {
-                    string query = "Update Rendeles set Futar_Id = (select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id+ ") AND Futar.Id != 1   order by Ertekeles limit 1 ) WHERE Id = " + order_id;
+                    string query = "select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id + ") AND Futar.Id != " + id + " AND Elerhetoseg = 1  order by Ertekeles limit 1";
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    dataReader.Read();
+                    if (!dataReader.HasRows) { return "failed"; }
+
+                    string id2 = dataReader.GetInt32("Id").ToString();
+
+                    dataReader.Close();
+
+                    string query_2 = "Update Rendeles set Futar_Id = " +id2+ " WHERE Id = " + order_id;
+                    cmd = new MySqlCommand(query_2, connection);
                     cmd.ExecuteNonQuery();
+
+                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",C");
 
                     return "OK";
                 }
@@ -278,6 +294,7 @@ namespace ServerV3
                     return "Error";
                 }
             }
+
             public string Szallitas_Finished(string id)
             {
                 try 
@@ -342,16 +359,16 @@ namespace ServerV3
         static void Main(string[] args)
         {
             Program p = new Program();
-            p.SetUpTimer(new TimeSpan(14, 09, 00));
+            p.SetUpTimer(new TimeSpan(23, 59, 00));
             Server_Run();
         }
 
         private static void Server_Run()
         {
             //Attila
-            IPAddress ipAd = IPAddress.Parse("192.168.1.107");
-            //IPAddress ipAd = IPAddress.Parse("192.168.1.65");
-            TcpListener serverSocket = new TcpListener(ipAd, 8081);
+            //IPAddress ipAd = IPAddress.Parse("192.168.1.107");
+            IPAddress ipAd = IPAddress.Parse("192.168.1.7");
+            TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
 
@@ -361,7 +378,7 @@ namespace ServerV3
             {
                 clientSocket = serverSocket.AcceptTcpClient();
 
-                int buffersize = clientSocket.ReceiveBufferSize;
+                int buffersize = 500;
                 byte[] bytesFrom = new byte[buffersize];
                 string dataFromClient = null;
 
@@ -511,8 +528,9 @@ namespace ServerV3
                     string messageback = "";
                     if (stateoforder == "OK")
                     {
-                         messageback = DB.Instance.Orderstate_update(dataFromClient.Split(';')[2]);
+                        messageback = DB.Instance.Orderstate_update(dataFromClient.Split(';')[2]);
                     }
+                    else messageback = stateoforder;
 
                     Byte[] broadcastBytes = null;
                     broadcastBytes = Encoding.ASCII.GetBytes(messageback);

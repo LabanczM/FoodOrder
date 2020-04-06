@@ -11,7 +11,7 @@ namespace NetPincerV2
 {
     public sealed class Server_connection
     {
-        private static string ip = "192.168.1.7";
+        private static string ip = "192.168.1.107";
         private static int port = 8081;
 
         private static Server_connection instance = null;

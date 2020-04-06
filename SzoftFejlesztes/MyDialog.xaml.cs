@@ -22,6 +22,7 @@ namespace SzoftFejlesztes
         public MyDialog()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         static string etterem_nev = "";
         public void EtteremBe(string etterem_neve)
@@ -30,13 +31,10 @@ namespace SzoftFejlesztes
         }
         public void Bejelentkezes()
         {
-            MessageBox.Show(etterem_nev);
             string message_to_send = "loginrestaurante" + ";" + 1 + ";" + etterem_nev + ";" + Password.Text;
-            MessageBox.Show(message_to_send);
             try
             {
                 string response = Server_connection.GetInstance().SendMessageToServer(message_to_send, true);
-                MessageBox.Show(response);
                 if (response == "accepted")
                 {
                     FoMenu fm = new FoMenu();

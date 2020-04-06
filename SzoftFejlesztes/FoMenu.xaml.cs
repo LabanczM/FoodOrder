@@ -22,6 +22,7 @@ namespace SzoftFejlesztes
         public FoMenu()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private void Fut_Click(object sender, RoutedEventArgs e)
@@ -42,7 +43,9 @@ namespace SzoftFejlesztes
 
         private void Stat_Click(object sender, RoutedEventArgs e)
         {
-
+            Bevetel be = new Bevetel();
+            this.Close();
+            be.Show();
         }
 
         

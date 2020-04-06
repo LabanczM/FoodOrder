@@ -41,6 +41,12 @@
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.19\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
@@ -78,8 +84,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Havibe.xaml.cs">
+      <DependentUpon>Havibe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyDialog.xaml.cs">
       <DependentUpon>MyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Napibe.xaml.cs">
+      <DependentUpon>Napibe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PickDate.xaml.cs">
+      <DependentUpon>PickDate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Rendekesek.xaml.cs">
       <DependentUpon>Rendekesek.xaml</DependentUpon>
@@ -87,6 +102,10 @@
     <Compile Include="Server_connection.cs" />
     <Compile Include="UserData.cs" />
     <Page Include="Bevetel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Havibe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +142,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Napibe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PickDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Rendekesek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

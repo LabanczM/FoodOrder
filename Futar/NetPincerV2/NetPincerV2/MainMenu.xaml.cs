@@ -60,5 +60,11 @@ namespace NetPincerV2
             Settings s = new Settings();
             s.Show();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            PickDate pd = new PickDate();
+            pd.Show();
+        }
     }
 }

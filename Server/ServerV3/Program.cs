@@ -332,6 +332,102 @@ namespace ServerV3
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
             }
+
+            public string GetIncomeDay(string dates)
+            {
+                if (dates.Contains("getbevetelNC"))
+                {
+                    dates = dates.Replace('.', '-').Replace(':', '-');
+                    string[] splitdates = dates.Split(";");
+                    string message = "";
+                    string id = splitdates[splitdates.Length-1];
+                    string select = "";
+                    for (int i = 1; i < splitdates.Length - 1; i++)
+                    {
+                        if (i != splitdates.Length - 2)
+                            select += "Datum = '" + splitdates[i] + "' OR ";
+                        else
+                            select += "Datum = '" + splitdates[i] + "'";
+                    }
+                    try
+                    {
+                        string query = "Select Datum AS date, Count(Id) AS db From Rendeles Where Futar_Id = " + id + " And " + select + " And Allapot = 1 Group By Datum Order By Datum";
+                        MySqlCommand cmd = new MySqlCommand(query, connection);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                        while (dataReader.Read())
+                        {
+                            message += dataReader.GetDateTime("date").ToString() + ";" + (300  * dataReader.GetInt16("db")) + "?";
+                        }
+                        if (message == "")
+                            message = "NoData";
+                        dataReader.Close();
+                        return message;
+                    }
+                    catch (Exception)
+                    {
+                        return "Error";
+                    }
+                }
+                else
+                {
+                    dates = dates.Replace('.', '-').Replace(':', '-');
+                    string[] splitdates = dates.Split(";");
+                    string message = "";
+
+                    string select = "";
+                    for (int i = 1; i < splitdates.Length; i++)
+                    {
+                        if (i != splitdates.Length - 1)
+                            select += "Datum = '" + splitdates[i] + "' OR ";
+                        else
+                            select += "Datum = '" + splitdates[i] + "'";
+                    }
+
+                    try
+                    {
+                        string query = "Select Datum AS date, SUM(Ar) AS Ar From Rendeles Where " + select + " Group By Datum Order By Datum";
+                        MySqlCommand cmd = new MySqlCommand(query, connection);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                        while (dataReader.Read())
+                        {
+                            message += dataReader.GetDateTime("date").ToString() + ";" + dataReader.GetInt16("Ar") + "?";
+                        }
+                        if (message == "")
+                            message = "NoData";
+                        dataReader.Close();
+                        return message;
+                    }
+                    catch (Exception)
+                    {
+                        return "Error";
+                    }
+                }
+            }
+            public string GetIncomeMonth()
+            {
+                string message = "";
+                try
+                {
+                    string query = "Select Month(Datum) AS Ho, SUM(Ar) AS Ar From Rendeles Group By Month(Datum)";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        message += dataReader.GetInt16("Ho") + ";" + dataReader.GetInt16("Ar") + "?";
+                    }
+                    if (message == "")
+                        message = "NoData";
+                    dataReader.Close();
+                    return message;
+                }
+                catch (Exception)
+                {
+                    return "Error";
+                }
+            }
         }
 
         public static Hashtable clientsList = new Hashtable();
@@ -366,8 +462,8 @@ namespace ServerV3
         private static void Server_Run()
         {
             //Attila
-            //IPAddress ipAd = IPAddress.Parse("192.168.1.107");
-            IPAddress ipAd = IPAddress.Parse("192.168.1.7");
+            IPAddress ipAd = IPAddress.Parse("192.168.1.107");
+            //IPAddress ipAd = IPAddress.Parse("192.168.1.7");
             TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
@@ -531,6 +627,25 @@ namespace ServerV3
                         messageback = DB.Instance.Orderstate_update(dataFromClient.Split(';')[2]);
                     }
                     else messageback = stateoforder;
+
+                    Byte[] broadcastBytes = null;
+                    broadcastBytes = Encoding.ASCII.GetBytes(messageback);
+                    networkStream.Write(broadcastBytes, 0, broadcastBytes.Length);
+                    networkStream.Flush();
+                }
+                //Bevétel
+                if (dataFromClient.Contains("getbevetelN"))
+                {
+                    string messageback = DB.Instance.GetIncomeDay(dataFromClient);
+
+                    Byte[] broadcastBytes = null;
+                    broadcastBytes = Encoding.ASCII.GetBytes(messageback);
+                    networkStream.Write(broadcastBytes, 0, broadcastBytes.Length);
+                    networkStream.Flush();
+                }
+                if (dataFromClient.Contains("getbevetelH"))
+                {
+                    string messageback = DB.Instance.GetIncomeMonth();
 
                     Byte[] broadcastBytes = null;
                     broadcastBytes = Encoding.ASCII.GetBytes(messageback);

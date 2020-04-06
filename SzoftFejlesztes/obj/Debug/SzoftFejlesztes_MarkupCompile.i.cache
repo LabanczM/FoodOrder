@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\P.A\Documents\VSProjects\SzoftFejlesztes\obj\Debug\
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\obj\Debug\
 SzoftFejlesztes
 none
 false
 DEBUG;TRACE
-C:\Users\P.A\Documents\VSProjects\SzoftFejlesztes\App.xaml
-6414941264
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\App.xaml
+9-100220247
 
-13-597120739
-26-1789785632
-Bevetel.xaml;MyDialog.xaml;FoMenu.xaml;Futarok.xaml;MainWindow.xaml;Rendekesek.xaml;
+161979542600
+28-1173282967
+Bevetel.xaml;Havibe.xaml;MyDialog.xaml;FoMenu.xaml;Futarok.xaml;MainWindow.xaml;Napibe.xaml;PickDate.xaml;Rendekesek.xaml;
 
-False
+True
 

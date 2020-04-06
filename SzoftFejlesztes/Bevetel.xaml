@@ -37,7 +37,7 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Style="{StaticResource Header}" Background="LightYellow" Content="Program neve" Grid.ColumnSpan="2"/>
         <Button Style="{StaticResource MenuP}" Content="Napi bevétel" Grid.Row="2" Grid.Column="0" Click="Button_Click"/>
-        <Button Style="{StaticResource MenuP}" Content="Havi bevétel" Grid.Row="3" Grid.Column="0"/>
-        <Button Style="{StaticResource MenuP}" Content="Vissza" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Button Style="{StaticResource MenuP}" Content="Havi bevétel" Grid.Row="3" Grid.Column="0" Click="Button_Click_1"/>
+        <Button Style="{StaticResource MenuP}" Content="Vissza" Grid.Row="5" Grid.ColumnSpan="2" Click="Button_Click_2"/>
     </Grid>
 </Window>

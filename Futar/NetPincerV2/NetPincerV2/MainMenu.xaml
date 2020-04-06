@@ -29,7 +29,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1" >
             <Button Margin="0,100,0,0" FontSize="15" Width="250" Height="40" Content="Beállítások" Click="Button_Click_2"/>
             <Button Margin="0,15,0,0" FontSize="15" Width="250" Height="40" Content="Rendelések" Click="Button_Click_1"/>
-            <Button Margin="0,15,0,0" FontSize="15" Width="250" Height="40" Content="Napi bevétel"/>
+            <Button Margin="0,15,0,0" FontSize="15" Width="250" Height="40" Content="Napi bevétel" Click="Button_Click_3"/>
             <Button Margin="258,30,258.4,0" FontSize="15" Width="270" Height="50" Content="Kilépés" Click="Button_Click" />
         </StackPanel>
 

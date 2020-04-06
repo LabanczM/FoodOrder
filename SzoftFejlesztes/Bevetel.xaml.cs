@@ -11,22 +11,41 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LiveCharts.Wpf;
 
 namespace SzoftFejlesztes
 {
     /// <summary>
     /// Interaction logic for Bevetel.xaml
     /// </summary>
+    /// 
+    
+
     public partial class Bevetel : Window
     {
         public Bevetel()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            PickDate pd = new PickDate();
+            pd.Show();
+        }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Havibe ha = new Havibe();
+            
+            ha.GetDatas();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            FoMenu fm = new FoMenu();
+            fm.Show();
+            this.Close();
         }
     }
 }

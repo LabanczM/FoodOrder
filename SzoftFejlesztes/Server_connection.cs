@@ -59,15 +59,11 @@ namespace SzoftFejlesztes
                     {
                         response += Convert.ToChar(bb[i]);
                     }
-                    MessageBox.Show(response);
-                    MessageBox.Show(message);
-
 
                     client.Close();
 
                     if (message.Contains("login") && response.Contains("accepted"))
                     {
-                        MessageBox.Show("valami");
                         UserData.GetInstance().Database_ID = int.Parse(response.Split(';')[1]);
                         UserData.GetInstance().Name = response.Split(';')[2];
                         UserData.GetInstance().City = response.Split(';')[3];

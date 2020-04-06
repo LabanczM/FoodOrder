@@ -23,6 +23,7 @@ namespace SzoftFejlesztes
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         public void PasswordCheck(string etterem_neve)
         {

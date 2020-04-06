@@ -56,6 +56,7 @@ namespace SzoftFejlesztes
         public Futarok()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         //futáraok datagridbe

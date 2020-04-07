@@ -96,3 +96,14 @@ C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\D
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\NetPincerV2.csproj.CopyComplete
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\NetPincerV2.exe
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\NetPincerV2.pdb
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\bin\Debug\LiveCharts.dll
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\bin\Debug\LiveCharts.pdb
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\bin\Debug\LiveCharts.xml
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\Napibe.g.cs
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\PickDate.g.cs
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\Napibe.baml
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\PickDate.baml
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Futar\NetPincerV2\NetPincerV2\obj\Debug\NetPincerV2.csproj.CopyComplete

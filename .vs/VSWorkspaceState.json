@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\SzoftFejlesztes"
+    "\\Futar",
+    "\\Futar\\NetPincerV2",
+    "\\Server"
   ],
-  "SelectedNode": "\\SzoftFejlesztes\\Bevetel.xaml.cs",
+  "SelectedNode": "\\Futar\\NetPincerV2\\NetPincerV2.sln",
   "PreviewInSolutionExplorer": false
 }

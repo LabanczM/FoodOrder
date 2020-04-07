@@ -54,3 +54,4 @@ C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netco
 C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.pdb
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.csproj.CoreCompileInputs.cache
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.genruntimeconfig.cache
+C:\Users\F.Gabor\Source\Repos\LabanczM\FoodOrder\Server\ServerV3\obj\Debug\netcoreapp2.1\ServerV3.genruntimeconfig.cache

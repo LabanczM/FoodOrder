@@ -266,11 +266,11 @@ namespace ServerV3
                 }
             }
 
-            public string Order_cancel_from_futar(string id, string order_id)
+            public string Order_cancel_from_futar(string id, string order_id, string varos)
             {
                 try
                 {
-                    string query = "select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id + ") AND Futar.Id != " + id + " AND Elerhetoseg = 1  order by Ertekeles limit 1";
+                    string query = "select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id + ") AND Futar.Id != " + id + " AND Elerhetoseg = 1 AND Cim = '"+varos+"' order by Ertekeles limit 1";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -462,8 +462,8 @@ namespace ServerV3
         private static void Server_Run()
         {
             //Attila
-            IPAddress ipAd = IPAddress.Parse("192.168.1.107");
-            //IPAddress ipAd = IPAddress.Parse("192.168.1.7");
+            //IPAddress ipAd = IPAddress.Parse("192.168.1.107");
+            IPAddress ipAd = IPAddress.Parse("192.168.1.7");
             TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
@@ -610,7 +610,7 @@ namespace ServerV3
                 }
                 if (dataFromClient.Contains("cancelorderC"))
                 {
-                    string messageback = DB.Instance.Order_cancel_from_futar(dataFromClient.Split(';')[1], dataFromClient.Split(';')[2]);
+                    string messageback = DB.Instance.Order_cancel_from_futar(dataFromClient.Split(';')[1], dataFromClient.Split(';')[2], dataFromClient.Split(';')[3]);
 
                     Byte[] broadcastBytes = null;
                     broadcastBytes = Encoding.ASCII.GetBytes(messageback);

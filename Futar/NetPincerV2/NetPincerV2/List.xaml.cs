@@ -66,7 +66,7 @@ namespace NetPincerV2
         {
             if (list_selected_item_index != -1)
             {
-                string messageback = Server_connection.GetInstance().SendMessageToServer("cancelorderC;" + UserData.GetInstance().Database_ID+";"+rendelesek[list_selected_item_index].Id, true);
+                string messageback = Server_connection.GetInstance().SendMessageToServer("cancelorderC;" + UserData.GetInstance().Database_ID+";"+rendelesek[list_selected_item_index].Id+";"+ UserData.GetInstance().City, true);
 
                 if (messageback != "failed" && messageback != "Error")
                 {

@@ -123,12 +123,35 @@ namespace ServerV3
                 }
             }
 
+            public string RegNumber()
+            {
+                string message = "";
+                string query = "Select Nev, Icon From Etterem Order By Id";
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                try
+                {
+                    while (dataReader.Read())
+                    {
+                        message += dataReader.GetString("Nev") + ";" + dataReader.GetString("Icon") + "?";
+                    }
+                    dataReader.Close();
+                    if (message != "")
+                        return message;
+                    else return "failed";
+                }
+                catch (Exception)
+                {
+                    dataReader.Close();
+                    return "failed";
+                }
+            }
             public string RegisterUser_R(string values)
             {
                 try
                 {
-                    string query = "Insert into Etterem (`Nev`, `Email`, `Cim`, `Tel`, `Jelszo`) Values('" + values.Split(";")[0] + "', '" + values.Split(";")[1] + "', '" + values.Split(";")[2] + "' ," +
-                    " '" + values.Split(";")[3] + "' , '" + values.Split(";")[4] + "')";
+                    string query = "Insert into Etterem (`Nev`, `Cim`, `Email`, `Tel`, `Jelszo`, `Icon`) Values('" + values.Split(";")[0] + "', '" + values.Split(";")[1] + "', '" + values.Split(";")[2] + "' ," +
+                    " '" + values.Split(";")[3] + "' , '" + values.Split(";")[4] + "' , '" + values.Split(";")[5] + "')";
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.ExecuteNonQuery();
 
@@ -243,7 +266,7 @@ namespace ServerV3
                 {
                     string message = "";
                     string query = "Select Rendeles.Id, Rendeles.Datum, Vasarlo.Nev, Vasarlo.Cim, Rendeles.Ar, " +
-                        "Rendeles.Etelek from Rendeles join Vasarlo on Rendeles.Vasarlo_Id = Vasarlo.Id Where Rendeles.Allapot = 0";
+                        "Rendeles.Etelek from Rendeles join Vasarlo on Rendeles.Vasarlo_Id = Vasarlo.Id Where Rendeles.Allapot = 0 And Rendeles.Etterem_Id = " + id;
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     try
@@ -256,7 +279,9 @@ namespace ServerV3
                         }
 
                         dataReader.Close();
-                        return message;
+                        if (message != "")
+                            return message;
+                        else return "NoData";
                     }
                     catch (Exception ex)
                     {
@@ -527,7 +552,7 @@ namespace ServerV3
                 if (dataFromClient.Contains("reg"))
                 {
                     string messageback = "";
-                    string values = dataFromClient.Substring(dataFromClient.Split(';')[0].Length+1); // ell +1 rész
+                    string values = dataFromClient.Substring(dataFromClient.Split(';')[0].Length + 1); // ell +1 rész
                     switch (dataFromClient.Split(';')[0])
                     {
                         case "regC": messageback = DB.Instance.RegisterUser_C(values); break;
@@ -646,6 +671,16 @@ namespace ServerV3
                 if (dataFromClient.Contains("getbevetelH"))
                 {
                     string messageback = DB.Instance.GetIncomeMonth();
+
+                    Byte[] broadcastBytes = null;
+                    broadcastBytes = Encoding.ASCII.GetBytes(messageback);
+                    networkStream.Write(broadcastBytes, 0, broadcastBytes.Length);
+                    networkStream.Flush();
+                }
+                
+                    if (dataFromClient.Contains("Buttoncont"))
+                {
+                    string messageback = DB.Instance.RegNumber();
 
                     Byte[] broadcastBytes = null;
                     broadcastBytes = Encoding.ASCII.GetBytes(messageback);

@@ -23,24 +23,26 @@
             <Setter Property="FontSize" Value="18"/>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120*"/>
-            <ColumnDefinition Width="280*"/>
-            <ColumnDefinition Width="280*"/>
-            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource Header}" Background="LightYellow" Content="Program neve"/>
-        <Button x:Name="McDonalds" Style="{StaticResource Icon}" Content="McDonalds" Grid.Column="1" Grid.Row="2" Click="McDonalds_Click"/>
-        <Button x:Name="KFC" Style="{StaticResource Icon}" Content="KFC" Grid.Column="2" Grid.Row="2" Click="KFC_Click"/>
-        <Button x:Name="BurgerKing" Style="{StaticResource Icon}" Content="BurgerKing" Grid.Column="1" Grid.Row="3" Click="BurgerKing_Click"/>
-        <Button x:Name="PizzaHut" Style="{StaticResource Icon}" Content="PizzaHut" Grid.Column="2" Grid.Row="3" Click="PizzaHut_Click"/>
-        <Button Content="Regisztrálás" FontFamily="Times New Roman" FontSize="22" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="35" />
+        <Label Grid.Row="0" Grid.ColumnSpan="8" Style="{StaticResource Header}" Background="LightYellow" Content="Program neve" Margin="0,0,-5.4,64.6" Grid.RowSpan="2"/>
+        <Button Content="Regisztrálás" FontFamily="Times New Roman" FontSize="22" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="7" Margin="99,15.2,0.4,14.6" Click="Regiszt_Click" />
     </Grid>
 </Window>

@@ -77,3 +77,5 @@ C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\obj\Debug\Napibe.ba
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\obj\Debug\PickDate.g.cs
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\obj\Debug\PickDate.baml
 C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\obj\Debug\SzoftFejlesztes.csproj.CoreCompileInputs.cache
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\obj\Debug\Reg.g.cs
+C:\Users\P.A\Source\Repos\LabanczM\FoodOrder\SzoftFejlesztes\obj\Debug\Reg.baml

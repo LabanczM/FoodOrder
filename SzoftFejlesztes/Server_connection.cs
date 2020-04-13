@@ -121,7 +121,7 @@ namespace SzoftFejlesztes
                     {
                         response += Convert.ToChar(bb[i]);
                     }
-
+                    MessageBox.Show(response);
                     if (response == "alert")
                     {
                         MainWindow.MessageFromServer("Alert from server");

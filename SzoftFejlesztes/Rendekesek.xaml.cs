@@ -53,11 +53,13 @@ namespace SzoftFejlesztes
         {
             List<Rendeles> rendelesek = new List<Rendeles>();
 
-            string message_to_send = "getordersR;1";
+            string message_to_send = "getordersR;" + UserData.GetInstance().Database_ID;
             string response = Server_connection.GetInstance().SendMessageToServer(message_to_send, true);
 
             response = response.Remove(response.Length - 1);
-            if (response != "failed")
+            if (response == "NoDat")
+                MessageBox.Show("Nincs beérkező rendelés");
+            else if (response != "failed")
             {
                 foreach (var item in response.Split('?'))
                 {

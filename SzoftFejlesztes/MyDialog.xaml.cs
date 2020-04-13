@@ -32,11 +32,13 @@ namespace SzoftFejlesztes
         public void Bejelentkezes()
         {
             string message_to_send = "loginrestaurante" + ";" + 1 + ";" + etterem_nev + ";" + Password.Text;
+            MessageBox.Show(etterem_nev);
             try
             {
                 string response = Server_connection.GetInstance().SendMessageToServer(message_to_send, true);
                 if (response == "accepted")
                 {
+                    MessageBox.Show(UserData.GetInstance().Database_ID.ToString());
                     FoMenu fm = new FoMenu();
                     fm.Show();
                     this.Close();

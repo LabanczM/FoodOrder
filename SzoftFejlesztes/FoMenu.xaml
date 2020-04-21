@@ -37,7 +37,7 @@
             <RowDefinition Height="65*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Style="{StaticResource Header}" Background="LightYellow" Content="Program neve" Grid.ColumnSpan="2"/>
-        <Button x:Name="Menu" Style="{StaticResource MenuP}" Content="Menü szerkesztése" Grid.Row="2" Grid.Column="0"/>
+        <Button x:Name="Menu" Style="{StaticResource MenuP}" Content="Új étel felvétele" Grid.Row="2" Grid.Column="0" Click="Menu_Click"/>
         <Button x:Name="Rend" Style="{StaticResource MenuP}" Content="Rendelések kezelése" Grid.Row="2" Grid.Column="1" Click="Rend_Click"/>
         <Button x:Name="Fut" Style="{StaticResource MenuP}" Content="Futárok kezelése" Grid.Row="3" Grid.Column="1" Click="Fut_Click"/>
         <Button x:Name="Stat" Style="{StaticResource MenuP}" Content="Statisztika készítése" Grid.Row="3" Grid.Column="0" Click="Stat_Click"/>

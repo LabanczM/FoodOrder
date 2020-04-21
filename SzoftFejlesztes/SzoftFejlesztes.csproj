@@ -84,6 +84,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Foods.xaml.cs">
+      <DependentUpon>Foods.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Havibe.xaml.cs">
       <DependentUpon>Havibe.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
     <Compile Include="Server_connection.cs" />
     <Compile Include="UserData.cs" />
     <Page Include="Bevetel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Foods.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

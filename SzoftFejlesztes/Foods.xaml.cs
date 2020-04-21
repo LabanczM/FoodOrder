@@ -18,41 +18,19 @@ using System.Windows.Shapes;
 namespace SzoftFejlesztes
 {
     /// <summary>
-    /// Interaction logic for Reg.xaml
+    /// Interaction logic for Foods.xaml
     /// </summary>
-    /// 
-    public partial class Reg : Window
+    public partial class Foods : Window
     {
         static string filename = "";
 
-        public Reg()
+        public Foods()
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
-
-        private void Reg_Click(object sender, RoutedEventArgs e)
-        {
-            string message = "regR;" + Enev.Text + ";" + Ecim.Text + ";" + Email.Text + ";" + Etel.Text + ";" + Ejel.Text + ";" + "https://szoftbead.000webhostapp.com/etteremicon/"+filename;
-            string message_back = Server_connection.GetInstance().SendMessageToServer(message, true);
-
-            if (message_back == "OK")
-            {
-                MessageBox.Show("Regisztrálás sikerült");
-                MainWindow mw = new MainWindow();
-                mw.NewButton();
-                mw.Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Adatbázis hiba");
-                this.Close();
-            }
-        }
-
-        private void Img_Click(object sender, RoutedEventArgs e)
+        private void ImgFood_Click(object sender, RoutedEventArgs e)
         {
             string filepath = "";
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -63,11 +41,12 @@ namespace SzoftFejlesztes
             }
             try
             {
-                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://files.000webhost.com/public_html/etteremicon/" + filename);
-                ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
+                filename = Etel_nev.Text + "." + filename.Split('.')[1];
+                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://files.000webhost.com/public_html/foods/" + UserData.GetInstance().Name.Replace(" ", "") + filename.Replace(" ",""));
 
+                ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 //if you want to delete, uncomment the line below, and remove the line above
-                //requestFileDelete.Method = WebRequestMethods.Ftp.DeleteFile; 
+                //ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile; 
 
                 ftpRequest.Credentials = new NetworkCredential("szoftbead", "M%WNI7ioZ&*xyqpyvW)Q");
 
@@ -88,7 +67,27 @@ namespace SzoftFejlesztes
             {
                 MessageBox.Show("Valami hiba történt!");
             }
+        }
+
+        private void NewFood_Click(object sender, RoutedEventArgs e)
+        {
             
+            string message = "nfood;" + Etel_nev.Text + ";" + Etel_ar.Text + ";" + Elk_ido.Text + ";" + "https://szoftbead.000webhostapp.com/etteremicon/" + UserData.GetInstance().Name + filename;
+            string message_back = Server_connection.GetInstance().SendMessageToServer(message, true);
+
+            if (message_back == "OK")
+            {
+                MessageBox.Show("Ételfelvétes sikeresen megtörtént");
+                MainWindow mw = new MainWindow();
+                mw.NewButton();
+                mw.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Adatbázis hiba");
+                this.Close();
+            }
         }
     }
 }

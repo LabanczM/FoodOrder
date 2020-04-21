@@ -453,6 +453,22 @@ namespace ServerV3
                     return "Error";
                 }
             }
+            public string NewFood(string values)
+            {
+                try
+                {
+                    string query = "Insert into Menu (`Nev`, `Ar`, `Elk_ido`, `Link`) Values('" + values.Split(";")[0] + "', '" + values.Split(";")[1] + "', '" + values.Split(";")[2] + "' ," +
+                    " '" + values.Split(";")[3] + "')";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.ExecuteNonQuery();
+
+                    return "OK";
+                }
+                catch (Exception)
+                {
+                    return "Error";
+                }
+            }
         }
 
         public static Hashtable clientsList = new Hashtable();
@@ -487,8 +503,8 @@ namespace ServerV3
         private static void Server_Run()
         {
             //Attila
-            //IPAddress ipAd = IPAddress.Parse("192.168.1.107");
-            IPAddress ipAd = IPAddress.Parse("192.168.1.7");
+            IPAddress ipAd = IPAddress.Parse("192.168.1.107");
+            //IPAddress ipAd = IPAddress.Parse("192.168.1.7");
             TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();
@@ -588,7 +604,7 @@ namespace ServerV3
                     {
                         case "updateC": messageback = DB.Instance.UpdateUser_C(values); break;
                         //case "updateB": messageback = DB.Instance.RegisterUser_B(values); break;
-                       // case "updateR": messageback = DB.Instance.RegisterUser_R(values); break;
+                       //case "updateR": messageback = DB.Instance.RegisterUser_R(values); break;
                         default: break;
                     }
 
@@ -678,9 +694,22 @@ namespace ServerV3
                     networkStream.Flush();
                 }
                 
-                    if (dataFromClient.Contains("Buttoncont"))
+                if (dataFromClient.Contains("Buttoncont"))
                 {
                     string messageback = DB.Instance.RegNumber();
+
+                    Byte[] broadcastBytes = null;
+                    broadcastBytes = Encoding.ASCII.GetBytes(messageback);
+                    networkStream.Write(broadcastBytes, 0, broadcastBytes.Length);
+                    networkStream.Flush();
+                }
+
+                if (dataFromClient.Contains("nfood"))
+                {
+                    string messageback = "";
+                    string values = dataFromClient.Substring(dataFromClient.Split(';')[0].Length + 1); // ell +1 rész
+
+                    messageback = DB.Instance.NewFood(values);
 
                     Byte[] broadcastBytes = null;
                     broadcastBytes = Encoding.ASCII.GetBytes(messageback);

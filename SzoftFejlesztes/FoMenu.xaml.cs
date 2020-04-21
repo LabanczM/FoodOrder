@@ -28,17 +28,17 @@ namespace SzoftFejlesztes
         private void Fut_Click(object sender, RoutedEventArgs e)
         {
             Futarok ft = new Futarok();
+            this.Close();
             ft.KiListaz();
             ft.Show();
-            this.Close();
         }
 
         private void Rend_Click(object sender, RoutedEventArgs e)
         {
             Rendekesek r = new Rendekesek();
+            this.Close();
             r.KiListaz();
             r.Show();
-            this.Close();
         }
 
         private void Stat_Click(object sender, RoutedEventArgs e)
@@ -48,6 +48,11 @@ namespace SzoftFejlesztes
             be.Show();
         }
 
-        
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Foods f = new Foods();
+            this.Close();
+            f.Show();
+        }
     }
 }

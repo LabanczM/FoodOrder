@@ -146,6 +146,7 @@ namespace ServerV3
                     return "failed";
                 }
             }
+
             public string RegisterUser_R(string values)
             {
                 try
@@ -195,17 +196,6 @@ namespace ServerV3
                     return "Error";
                 }
             }
-
-            /* message to client teszt
-            public void sendmessage()
-            {
-                Console.WriteLine("kinek:");
-                string kinek = Console.ReadLine();
-                string mit = "alert";
-
-                Broadcast_to_saved_client(mit, kinek);
-            }
-            */
 
             public string Get_futar()
             {
@@ -291,11 +281,12 @@ namespace ServerV3
                 }
             }
 
+            
             public string Order_cancel_from_futar(string id, string order_id, string varos)
             {
                 try
                 {
-                    string query = "select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id + ") AND Futar.Id != " + id + " AND Elerhetoseg = 1 AND Cim = '"+varos+"' order by Ertekeles limit 1";
+                    string query = "select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id + ") AND Futar.Id != " + id + " AND Elerhetoseg = 1 AND Cim = '"+varos+ "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -311,6 +302,7 @@ namespace ServerV3
                     cmd.ExecuteNonQuery();
 
                     Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",C");
+                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",CF");
 
                     return "OK";
                 }
@@ -319,6 +311,75 @@ namespace ServerV3
                     return "Error";
                 }
             }
+            /*
+            public string Order_Add_w_Futar_w_i(int order_id) // insertel
+            {
+                try
+                {
+                    string query = "select Futar.Id from Futar where Elerhetoseg = 1 AND Cim = '" + varos + "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    dataReader.Read();
+                    if (!dataReader.HasRows) { return "failed"; }
+
+                    string varos = dataReader.GetInt32("").ToString();
+
+                    string query = "select Futar.Id from Futar where Elerhetoseg = 1 AND Cim = '" + varos + "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    dataReader.Read();
+                    if (!dataReader.HasRows) { return "failed"; }
+
+                    string id2 = dataReader.GetInt32("Id").ToString();
+
+                    dataReader.Close();
+
+                    string query_2 = "Instert into Rendeles(Etelek,Futar_Id,Etterem_Id,Vasarlo_Id,Datum,Ar,Allapot) values('"+etel+"', "+id2+","+etteremid+","+vasarloid+",'"+DateTime.Now.ToString()+"',"+ar+",0)";
+                    cmd = new MySqlCommand(query_2, connection);
+                    cmd.ExecuteNonQuery();
+
+                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",C");
+                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",CF");
+
+                    return "OK";
+                }
+                catch (Exception)
+                {
+                    return "Error";
+                }
+            } 
+
+            public string Order_Add_w_Futar_w_u(string etel, int etteremid, int vasarloid, int ar, string varos) // update-el
+            {
+                try
+                {
+                    string query = "select Futar.Id from Futar where Elerhetoseg = 1 AND Cim = '" + varos + "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    dataReader.Read();
+                    if (!dataReader.HasRows) { return "failed"; }
+
+                    string id2 = dataReader.GetInt32("Id").ToString();
+
+                    dataReader.Close();
+
+                    string query_2 = "Instert into Rendeles(Etelek,Futar_Id,Etterem_Id,Vasarlo_Id,Datum,Ar,Allapot) values('" + etel + "', " + id2 + "," + etteremid + "," + vasarloid + ",'" + DateTime.Now.ToString() + "'," + ar + ",0)";
+                    cmd = new MySqlCommand(query_2, connection);
+                    cmd.ExecuteNonQuery();
+
+                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",C");
+                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",CF");
+
+                    return "OK";
+                }
+                catch (Exception)
+                {
+                    return "Error";
+                }
+            } */ // rendelés felvétele futárral (baj van a város meghatározásával)
 
             public string Szallitas_Finished(string id)
             {

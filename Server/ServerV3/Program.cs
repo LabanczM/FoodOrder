@@ -284,14 +284,15 @@ namespace ServerV3
             
             public string Order_cancel_from_futar(string id, string order_id, string varos)
             {
+                MySqlDataReader dataReader = null;
                 try
                 {
                     string query = "select Futar.Id from Futar where Ertekeles <= (select Ertekeles from Futar where Futar.Id = " + id + ") AND Futar.Id != " + id + " AND Elerhetoseg = 1 AND Cim = '"+varos+ "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    dataReader = cmd.ExecuteReader();
                     dataReader.Read();
-                    if (!dataReader.HasRows) { return "failed"; }
+                    if (!dataReader.HasRows) { dataReader.Close(); return "failed"; }
 
                     string id2 = dataReader.GetInt32("Id").ToString();
 
@@ -302,25 +303,27 @@ namespace ServerV3
                     cmd.ExecuteNonQuery();
 
                     Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",C");
-                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",CF");
+                   // Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",CF");
 
                     return "OK";
                 }
                 catch (Exception)
                 {
+                    dataReader.Close();
                     return "Error";
                 }
             }
             public string Order_Add_w_Futar_w_i(int order_id)
             {
+                MySqlDataReader dataReader = null;
                 try
                 {
                     string query = "select Cim from Vasarlo where Id in (select Vasarlo_Id from Rendeles where Id = " + order_id + " )";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    dataReader = cmd.ExecuteReader();
                     dataReader.Read();
-                    if (!dataReader.HasRows) { return "failed"; }
+                    if (!dataReader.HasRows) { dataReader.Close(); return "failed"; }
 
                     string varos = dataReader.GetInt32("Cim").ToString().Split(';')[0]; // splik karakter ellenőrzés !!!! ------------------------------
 
@@ -329,7 +332,7 @@ namespace ServerV3
                     cmd = new MySqlCommand(query, connection);
                     dataReader = cmd.ExecuteReader();
                     dataReader.Read();
-                    if (!dataReader.HasRows) { return "failed"; }
+                    if (!dataReader.HasRows) { dataReader.Close(); return "failed"; }
 
                     string id2 = dataReader.GetInt32("Id").ToString();
 
@@ -346,7 +349,7 @@ namespace ServerV3
                 }
                 catch (Exception)
                 {
-                    
+                    dataReader.Close();
                     return "Error";
                 }
             }
@@ -534,8 +537,8 @@ namespace ServerV3
         private static void Server_Run()
         {
             //Attila
-            IPAddress ipAd = IPAddress.Parse("192.168.1.107");
-            //IPAddress ipAd = IPAddress.Parse("192.168.1.7");
+            //IPAddress ipAd = IPAddress.Parse("192.168.1.107");
+            IPAddress ipAd = IPAddress.Parse("192.168.0.104");
             TcpListener serverSocket = new TcpListener(ipAd, 8081); 
             TcpClient clientSocket = default(TcpClient);
             serverSocket.Start();

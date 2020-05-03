@@ -11,7 +11,7 @@ namespace NetPincerV2
 {
     public sealed class Server_connection
     {
-        private static string ip = "192.168.1.39";
+        private static string ip = "192.168.0.104";
         private static int port = 8081;
 
         private static Server_connection instance = null;
@@ -125,11 +125,6 @@ namespace NetPincerV2
                     }
 
                     MainWindow.MessageFromServer(response);
-
-                    Console.Beep();
-                    Thread.Sleep(500);
-                    Console.Beep();
-
                 }
 
                 client.Close();

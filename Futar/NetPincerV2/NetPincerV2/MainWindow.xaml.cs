@@ -40,8 +40,7 @@ namespace NetPincerV2
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Reg r = new Reg();
-            r.Show();
+            new Reg().Show();
         }
 
         public static void MessageFromServer(string message)

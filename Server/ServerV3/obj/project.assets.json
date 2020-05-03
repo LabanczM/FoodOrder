@@ -4714,24 +4714,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\P.A\\.nuget\\packages\\": {},
+    "C:\\Users\\F.Gabor\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\P.A\\Source\\Repos\\LabanczM\\FoodOrder\\Server\\ServerV3\\ServerV3.csproj",
+      "projectUniqueName": "C:\\Users\\F.Gabor\\Source\\Repos\\LabanczM\\FoodOrder\\Server\\ServerV3\\ServerV3.csproj",
       "projectName": "ServerV3",
-      "projectPath": "C:\\Users\\P.A\\Source\\Repos\\LabanczM\\FoodOrder\\Server\\ServerV3\\ServerV3.csproj",
-      "packagesPath": "C:\\Users\\P.A\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\P.A\\Source\\Repos\\LabanczM\\FoodOrder\\Server\\ServerV3\\obj\\",
+      "projectPath": "C:\\Users\\F.Gabor\\Source\\Repos\\LabanczM\\FoodOrder\\Server\\ServerV3\\ServerV3.csproj",
+      "packagesPath": "C:\\Users\\F.Gabor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\F.Gabor\\Source\\Repos\\LabanczM\\FoodOrder\\Server\\ServerV3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\P.A\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\F.Gabor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

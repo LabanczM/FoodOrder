@@ -23,10 +23,12 @@
         <StackPanel Background="Gray" Grid.Column="1" >
             <Label Margin="0,15,0,0" HorizontalAlignment="Center" Content="Beállítások" FontSize="25"  Grid.Column="1" ></Label>
         </StackPanel>
-        <StackPanel Background="Gray" Grid.Row="1" Grid.Column="3" ></StackPanel>
-        <StackPanel Background="Gray" Grid.Row="1" ></StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" >
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" >
+            <StackPanel.Background>
+                <ImageBrush ImageSource="background.jpg" />
+            </StackPanel.Background>
             <Button Margin="0,100,0,0" FontSize="18" Width="250" Height="40" Content="Adatok" Click="Button_Click"/>
             <Button x:Name="elerhetoseg" Margin="0,20,0,0" Background="Red" FontSize="18" Width="250" Height="40" Content="Elérhetőség" Click="Button_Click_1"/>
             <Button Margin="0,20,0,0" FontSize="18" Width="250" Height="40" Content="Vissza" Click="Button_Click_2"/>

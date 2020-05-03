@@ -33,6 +33,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            
             <StackPanel>
                 <Label Content="Név:" FontSize="20" Margin="100,50,50,0"></Label>
                 <Label Content="Jelszó:" FontSize="20" Margin="100,50,50,0"></Label>
@@ -40,6 +41,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1">
+
                 <TextBox x:Name="name" FontSize="20" Margin="50,55,50,0"></TextBox>
                 <TextBox x:Name="pwd" FontSize="20" Margin="50,55,50,0"></TextBox>
                 <Button FontSize="20" Margin="70,100,70,0" Click="Button_Click_1">Belépés</Button>

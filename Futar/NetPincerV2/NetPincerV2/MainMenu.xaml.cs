@@ -51,8 +51,7 @@ namespace NetPincerV2
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            List l = new List();
-            l.Show();
+            new List().Show();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

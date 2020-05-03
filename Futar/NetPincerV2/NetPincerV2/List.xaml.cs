@@ -52,8 +52,8 @@ namespace NetPincerV2
         public List()
         {
             InitializeComponent();
-            if(rendelesek.Count == 0) Fill_list();
-            else rendeles.ItemsSource = rendelesek;
+            Fill_list();
+            rendeles.ItemsSource = rendelesek;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -85,7 +85,7 @@ namespace NetPincerV2
 
         private void Fill_list()
         {
-            
+            rendelesek.Clear();
             string messageback = Server_connection.GetInstance().SendMessageToServer("getordersC;" + UserData.GetInstance().Database_ID, true);
 
             if (messageback != "failed" && messageback != "Error")

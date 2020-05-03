@@ -72,7 +72,7 @@ namespace SzoftFejlesztes
                 MessageBox.Show("Hiba");
             }
 
-            message_to_send = "getfutar";
+            /*message_to_send = "getfutar";
             response = Server_connection.GetInstance().SendMessageToServer(message_to_send, true);
 
             response = response.Remove(response.Length - 1);
@@ -86,7 +86,7 @@ namespace SzoftFejlesztes
             else
             {
                 MessageBox.Show("Hiba");
-            }
+            }*/
 
             rend_list.ItemsSource = rendelesek;
         }
@@ -96,6 +96,11 @@ namespace SzoftFejlesztes
             FoMenu fm = new FoMenu();
             fm.Show();
             this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

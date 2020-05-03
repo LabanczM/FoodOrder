@@ -42,11 +42,11 @@ namespace SzoftFejlesztes
             try
             {
                 filename = Etel_nev.Text + "." + filename.Split('.')[1];
-                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://files.000webhost.com/public_html/foods/" + UserData.GetInstance().Name.Replace(" ", "") + filename.Replace(" ",""));
+                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://files.000webhost.com/public_html/etelek/" + UserData.GetInstance().Name.Replace(" ", "") + filename.Replace(" ",""));
 
                 ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 //if you want to delete, uncomment the line below, and remove the line above
-                //ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile; 
+                //ftpRequest.Method = WebRequestMethods.Ftp.DeleteFile;
 
                 ftpRequest.Credentials = new NetworkCredential("szoftbead", "M%WNI7ioZ&*xyqpyvW)Q");
 

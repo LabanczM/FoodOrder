@@ -37,16 +37,23 @@ namespace SzoftFejlesztes
         {
             
             etterem.Clear();
-            string message = "Buttoncont";
-            string message_back = Server_connection.GetInstance().SendMessageToServer(message, true);
-            
-            if (message_back != "failed")
+            try
             {
-                message_back = message_back.Remove(message_back.Length - 1);
-                foreach (var item in message_back.Split('?'))
+                string message = "Buttoncont";
+                string message_back = Server_connection.GetInstance().SendMessageToServer(message, true);
+
+                if (message_back != "failed")
                 {
-                    etterem.Add(item.Split(';')[0], item.Split(';')[1]);
+                    message_back = message_back.Remove(message_back.Length - 1);
+                    foreach (var item in message_back.Split('?'))
+                    {
+                        etterem.Add(item.Split(';')[0], item.Split(';')[1]);
+                    }
                 }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Server Error");
             }
             Thickness margin = new Thickness();
             margin.Left = 5;

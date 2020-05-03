@@ -311,24 +311,23 @@ namespace ServerV3
                     return "Error";
                 }
             }
-            /*
-            public string Order_Add_w_Futar_w_i(int order_id) // insertel
+            public string Order_Add_w_Futar_w_i(int order_id)
             {
                 try
                 {
-                    string query = "select Futar.Id from Futar where Elerhetoseg = 1 AND Cim = '" + varos + "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
+                    string query = "select Cim from Vasarlo where Id in (select Vasarlo_Id from Rendeles where Id = " + order_id + " )";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     dataReader.Read();
                     if (!dataReader.HasRows) { return "failed"; }
 
-                    string varos = dataReader.GetInt32("").ToString();
+                    string varos = dataReader.GetInt32("Cim").ToString().Split(';')[0]; // splik karakter ellenőrzés !!!! ------------------------------
 
-                    string query = "select Futar.Id from Futar where Elerhetoseg = 1 AND Cim = '" + varos + "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
+                    query = "select Futar.Id from Futar where Elerhetoseg = 1 AND Cim = '" + varos + "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
 
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    cmd = new MySqlCommand(query, connection);
+                    dataReader = cmd.ExecuteReader();
                     dataReader.Read();
                     if (!dataReader.HasRows) { return "failed"; }
 
@@ -336,7 +335,7 @@ namespace ServerV3
 
                     dataReader.Close();
 
-                    string query_2 = "Instert into Rendeles(Etelek,Futar_Id,Etterem_Id,Vasarlo_Id,Datum,Ar,Allapot) values('"+etel+"', "+id2+","+etteremid+","+vasarloid+",'"+DateTime.Now.ToString()+"',"+ar+",0)";
+                    string query_2 = "Update Rendeles set Futar_Id =" + id2;
                     cmd = new MySqlCommand(query_2, connection);
                     cmd.ExecuteNonQuery();
 
@@ -347,39 +346,10 @@ namespace ServerV3
                 }
                 catch (Exception)
                 {
+                    
                     return "Error";
                 }
-            } 
-
-            public string Order_Add_w_Futar_w_u(string etel, int etteremid, int vasarloid, int ar, string varos) // update-el
-            {
-                try
-                {
-                    string query = "select Futar.Id from Futar where Elerhetoseg = 1 AND Cim = '" + varos + "' AND Futar.Id not in (select Futar_Id from Rendeles where Allapot = 0 group by Futar_Id having count(Futar_Id) >= 3) order by Ertekeles limit 1";
-
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    dataReader.Read();
-                    if (!dataReader.HasRows) { return "failed"; }
-
-                    string id2 = dataReader.GetInt32("Id").ToString();
-
-                    dataReader.Close();
-
-                    string query_2 = "Instert into Rendeles(Etelek,Futar_Id,Etterem_Id,Vasarlo_Id,Datum,Ar,Allapot) values('" + etel + "', " + id2 + "," + etteremid + "," + vasarloid + ",'" + DateTime.Now.ToString() + "'," + ar + ",0)";
-                    cmd = new MySqlCommand(query_2, connection);
-                    cmd.ExecuteNonQuery();
-
-                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",C");
-                    Broadcast_to_saved_client("Uj rendeles erkezett", id2 + ",CF");
-
-                    return "OK";
-                }
-                catch (Exception)
-                {
-                    return "Error";
-                }
-            } */ // rendelés felvétele futárral (baj van a város meghatározásával)
+            }
 
             public string Szallitas_Finished(string id)
             {

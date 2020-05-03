@@ -36,11 +36,10 @@
             <RowDefinition Height="61*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource Header}" Background="LightYellow" Content="Program neve" Margin="0,0,-0.4,39" Grid.RowSpan="2"/>
-        <DataGrid x:Name="rend_list" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,129.9,0" />
-        <ListBox x:Name="fut_ls" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0.2,0,-0.4,0.2"/>
-        <Label Content="Futárok" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontFamily="Times New Roman" Grid.Column="1" Grid.Row="1" Margin="0.2,0.2,-0.4,0" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="rend_list" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,129.9,0"/>
+        <Label Content="Rendelés kiszállítása" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontFamily="Times New Roman" Grid.Column="1" Grid.Row="1" Margin="0.2,0.2,-0.4,0" Grid.ColumnSpan="2"/>
         <Label Content="Rendelések" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontFamily="Times New Roman" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0.2,129.9,0"/>
-        <Button Content="Mentés" Style="{StaticResource MenuP}" Grid.Column="1" Grid.Row="3"/>
-        <Button Content="Vissza" Style="{StaticResource MenuP}" Grid.Column="2" Grid.Row="3" Click="Button_Click"/>
+        <Button Content="Kiszállítás" Style="{StaticResource MenuP}" Grid.Column="1" Grid.Row="2" Click="Button_Click_1"/>
+        <Button Content="Vissza" Style="{StaticResource MenuP}" Grid.Column="2" Grid.Row="2" Click="Button_Click"/>
     </Grid>
 </Window>
